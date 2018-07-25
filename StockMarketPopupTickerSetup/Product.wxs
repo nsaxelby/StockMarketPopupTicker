@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi' xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" >
+  <Product
+    Id="FB578C47-0B05-4D95-8925-AF5D61B4BBCD"
+    Name="Stock Market Popup Ticker"
+    Language="1033" Version="1.0.0"
+    Manufacturer="Nick Saxelby"
+    UpgradeCode="6D539E30-821C-4865-9498-E459A35311E0">
+
+    <Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <!-- Credit for this part https://stackoverflow.com/questions/29919701/how-to-remove-license-dialog-from-the-wix-installer-built-in-ui-wixui-minimal -->
+    <UI Id="WixUI_MinimalX">
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="Minimal" />
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+      <DialogRef Id="WelcomeDlg" />
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
+
+      <Property Id="ARPNOMODIFY" Value="1" />
+    </UI>
+
+    <UIRef Id="WixUI_Common" />
+    
+    <Icon Id="icon.ico" SourceFile="$(var.StockMarketPopupTickerApplication.TargetDir)\if_stock-market_87472.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
+    
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="APPLICATIONROOTDIRECTORY" Name="Stock Market Popup Ticker" />
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Stock Market Popup Ticker"/>
+      </Directory>
+
+      <Directory Id="StartupFolder" >
+      </Directory>
+    </Directory>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="MainExecutableFiles"  Guid="A39FB1A6-72D0-4E90-97A4-93972F30E689">
+        <File Id="ExecutableFile" Name="StockMarketPopupTickerApplication.exe" Source="$(var.StockMarketPopupTickerApplication.TargetPath)" KeyPath="yes" Vital="yes" />
+        <File Id="SettingsFile" Name="settingsConfig.xml" Source="$(var.StockMarketPopupTickerApplication.TargetDir)\settingsConfig.xml" Vital="yes">
+          <util:PermissionEx User="Users" GenericAll="yes"/>
+        </File>
+        <File Id="NewtonsoftJSON" Name="Newtonsoft.Json.dll" Source="$(var.StockMarketPopupTickerApplication.TargetDir)\Newtonsoft.Json.dll" Vital="yes" />
+        <File Id="NewtonsoftXML" Name="Newtonsoft.Json.xml" Source="$(var.StockMarketPopupTickerApplication.TargetDir)\Newtonsoft.Json.xml" Vital="yes" />
+        <RemoveFolder Id="APPLICATIONROOTDIRECTORY" On="uninstall"/>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="09DE8EAE-3458-4BA7-A628-40977552E11B">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+             Name="Stock Market Popup Ticker"
+           Description="Stock Market Popup Ticker"
+            Target="[#ExecutableFile]"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"
+                  Icon="icon.ico"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="StartupFolder">
+      <Component Id="StartUpShortcut" Guid="1E8F6723-79EC-4D98-B553-533BFD50D763">
+        <Shortcut Id="ApplicationStartUpShortcut"
+             Name="Stock Market Popup Ticker"
+           Description="Stock Market Popup Ticker"
+            Target="[#ExecutableFile]"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"
+                  Icon="icon.ico"/>
+        <RemoveFolder Id="StartupFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="ShortCutStartUp" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="Complete" Title="Stock Market Popup Ticker Setup" Level="1">
+      <ComponentRef Id="MainExecutableFiles" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="StartUpShortcut" />
+    </Feature>
+  </Product>
+</Wix>
