@@ -179,6 +179,11 @@
             // popupFreqNUD
             // 
             this.popupFreqNUD.Location = new System.Drawing.Point(178, 154);
+            this.popupFreqNUD.Maximum = new decimal(new int[] {
+            3600,
+            0,
+            0,
+            0});
             this.popupFreqNUD.Name = "popupFreqNUD";
             this.popupFreqNUD.Size = new System.Drawing.Size(120, 20);
             this.popupFreqNUD.TabIndex = 10;
