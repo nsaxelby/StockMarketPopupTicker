@@ -201,6 +201,11 @@
             // popupDurNUD
             // 
             this.popupDurNUD.Location = new System.Drawing.Point(178, 191);
+            this.popupDurNUD.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.popupDurNUD.Name = "popupDurNUD";
             this.popupDurNUD.Size = new System.Drawing.Size(120, 20);
             this.popupDurNUD.TabIndex = 12;
