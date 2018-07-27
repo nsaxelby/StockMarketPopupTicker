@@ -31,6 +31,7 @@ namespace StockMarketPopupTickerApplication
             popupTimer.Interval = settings.popupFrequencySeconds * 1000;
             popupTimer.Elapsed += PopupTimer_Elapsed;
             popupTimer.Start();
+            AttachListeners();
         }
 
         private void PopupTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -108,7 +109,7 @@ namespace StockMarketPopupTickerApplication
             {
                 Invoke(new MethodInvoker(() =>
                 {
-                    DynamicPopupForm dpop = new DynamicPopupForm(data, 5);
+                    DynamicPopupForm dpop = new DynamicPopupForm(data, settings.popupDurationSeconds);
                     dpop.Show();
                 }));
             }
@@ -232,7 +233,6 @@ namespace StockMarketPopupTickerApplication
             }
             // Now we have the settings file, we can have it load the settings into the config form.
             LoadSettingsIntoConfigForm();
-            AttachListeners();
         }
 
         private void LoadSettingsIntoConfigForm()
