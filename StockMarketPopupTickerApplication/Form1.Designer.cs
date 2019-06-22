@@ -48,6 +48,8 @@
             this.popupFreqNUD = new System.Windows.Forms.NumericUpDown();
             this.tradingHoursCheckbox = new System.Windows.Forms.CheckBox();
             this.popupDurNUD = new System.Windows.Forms.NumericUpDown();
+            this.apiCloudKey = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupFreqNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupDurNUD)).BeginInit();
@@ -69,56 +71,61 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openConfigStripMenu,
             this.showPricesNowMenuItem,
             this.exitStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(273, 118);
             // 
             // openConfigStripMenu
             // 
             this.openConfigStripMenu.Name = "openConfigStripMenu";
-            this.openConfigStripMenu.Size = new System.Drawing.Size(165, 22);
+            this.openConfigStripMenu.Size = new System.Drawing.Size(272, 38);
             this.openConfigStripMenu.Text = "Open Config";
             this.openConfigStripMenu.Click += new System.EventHandler(this.openConfigStripMenu_Click);
             // 
             // showPricesNowMenuItem
             // 
             this.showPricesNowMenuItem.Name = "showPricesNowMenuItem";
-            this.showPricesNowMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.showPricesNowMenuItem.Size = new System.Drawing.Size(272, 38);
             this.showPricesNowMenuItem.Text = "Show Prices Now";
             this.showPricesNowMenuItem.Click += new System.EventHandler(this.showPricesNowMenuItem_Click);
             // 
             // exitStripMenuItem
             // 
             this.exitStripMenuItem.Name = "exitStripMenuItem";
-            this.exitStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.exitStripMenuItem.Size = new System.Drawing.Size(272, 38);
             this.exitStripMenuItem.Text = "Exit";
             this.exitStripMenuItem.Click += new System.EventHandler(this.exitStripMenuItem_Click);
             // 
             // watchedStockList
             // 
             this.watchedStockList.FormattingEnabled = true;
-            this.watchedStockList.Location = new System.Drawing.Point(101, 13);
+            this.watchedStockList.ItemHeight = 25;
+            this.watchedStockList.Location = new System.Drawing.Point(202, 25);
+            this.watchedStockList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.watchedStockList.Name = "watchedStockList";
-            this.watchedStockList.Size = new System.Drawing.Size(220, 95);
+            this.watchedStockList.Size = new System.Drawing.Size(436, 179);
             this.watchedStockList.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(26, 25);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.Size = new System.Drawing.Size(157, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Watched Stock";
             // 
             // removeStockButton
             // 
-            this.removeStockButton.Location = new System.Drawing.Point(328, 13);
+            this.removeStockButton.Location = new System.Drawing.Point(656, 25);
+            this.removeStockButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.removeStockButton.Name = "removeStockButton";
-            this.removeStockButton.Size = new System.Drawing.Size(114, 23);
+            this.removeStockButton.Size = new System.Drawing.Size(228, 44);
             this.removeStockButton.TabIndex = 3;
             this.removeStockButton.Text = "Remove Stock";
             this.removeStockButton.UseVisualStyleBackColor = true;
@@ -127,24 +134,27 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 117);
+            this.label2.Location = new System.Drawing.Point(76, 225);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.Size = new System.Drawing.Size(110, 25);
             this.label2.TabIndex = 4;
             this.label2.Text = "Add Stock";
             // 
             // addStockTextbox
             // 
-            this.addStockTextbox.Location = new System.Drawing.Point(101, 114);
+            this.addStockTextbox.Location = new System.Drawing.Point(202, 219);
+            this.addStockTextbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.addStockTextbox.Name = "addStockTextbox";
-            this.addStockTextbox.Size = new System.Drawing.Size(220, 20);
+            this.addStockTextbox.Size = new System.Drawing.Size(436, 31);
             this.addStockTextbox.TabIndex = 5;
             // 
             // addStockButton
             // 
-            this.addStockButton.Location = new System.Drawing.Point(327, 111);
+            this.addStockButton.Location = new System.Drawing.Point(654, 213);
+            this.addStockButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.addStockButton.Name = "addStockButton";
-            this.addStockButton.Size = new System.Drawing.Size(114, 23);
+            this.addStockButton.Size = new System.Drawing.Size(228, 44);
             this.addStockButton.TabIndex = 6;
             this.addStockButton.Text = "Add Stock";
             this.addStockButton.UseVisualStyleBackColor = true;
@@ -153,68 +163,93 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 156);
+            this.label3.Location = new System.Drawing.Point(24, 300);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(160, 13);
+            this.label3.Size = new System.Drawing.Size(323, 25);
             this.label3.TabIndex = 7;
             this.label3.Text = "Frequency Of Popup ( seconds )";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 193);
+            this.label4.Location = new System.Drawing.Point(26, 371);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(147, 13);
+            this.label4.Size = new System.Drawing.Size(296, 25);
             this.label4.TabIndex = 8;
             this.label4.Text = "Duration of popup ( seconds )";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 232);
+            this.label5.Location = new System.Drawing.Point(26, 446);
+            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.Size = new System.Drawing.Size(0, 25);
             this.label5.TabIndex = 9;
             // 
             // popupFreqNUD
             // 
-            this.popupFreqNUD.Location = new System.Drawing.Point(178, 154);
+            this.popupFreqNUD.Location = new System.Drawing.Point(356, 296);
+            this.popupFreqNUD.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.popupFreqNUD.Maximum = new decimal(new int[] {
             3600,
             0,
             0,
             0});
             this.popupFreqNUD.Name = "popupFreqNUD";
-            this.popupFreqNUD.Size = new System.Drawing.Size(120, 20);
+            this.popupFreqNUD.Size = new System.Drawing.Size(240, 31);
             this.popupFreqNUD.TabIndex = 10;
             // 
             // tradingHoursCheckbox
             // 
             this.tradingHoursCheckbox.AutoSize = true;
-            this.tradingHoursCheckbox.Location = new System.Drawing.Point(19, 228);
+            this.tradingHoursCheckbox.Location = new System.Drawing.Point(31, 532);
+            this.tradingHoursCheckbox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tradingHoursCheckbox.Name = "tradingHoursCheckbox";
-            this.tradingHoursCheckbox.Size = new System.Drawing.Size(171, 17);
+            this.tradingHoursCheckbox.Size = new System.Drawing.Size(342, 29);
             this.tradingHoursCheckbox.TabIndex = 11;
             this.tradingHoursCheckbox.Text = "Only show during trading hours";
             this.tradingHoursCheckbox.UseVisualStyleBackColor = true;
             // 
             // popupDurNUD
             // 
-            this.popupDurNUD.Location = new System.Drawing.Point(178, 191);
+            this.popupDurNUD.Location = new System.Drawing.Point(356, 367);
+            this.popupDurNUD.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.popupDurNUD.Maximum = new decimal(new int[] {
             200,
             0,
             0,
             0});
             this.popupDurNUD.Name = "popupDurNUD";
-            this.popupDurNUD.Size = new System.Drawing.Size(120, 20);
+            this.popupDurNUD.Size = new System.Drawing.Size(240, 31);
             this.popupDurNUD.TabIndex = 12;
+            // 
+            // apiCloudKey
+            // 
+            this.apiCloudKey.Location = new System.Drawing.Point(237, 443);
+            this.apiCloudKey.Name = "apiCloudKey";
+            this.apiCloudKey.Size = new System.Drawing.Size(441, 31);
+            this.apiCloudKey.TabIndex = 13;
+            this.apiCloudKey.TextChanged += new System.EventHandler(this.ApiCloudKey_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(29, 446);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(189, 25);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "IEX Cloud API Key";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 274);
+            this.ClientSize = new System.Drawing.Size(962, 599);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.apiCloudKey);
             this.Controls.Add(this.popupDurNUD);
             this.Controls.Add(this.tradingHoursCheckbox);
             this.Controls.Add(this.popupFreqNUD);
@@ -229,6 +264,7 @@
             this.Controls.Add(this.watchedStockList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -266,6 +302,8 @@
         private System.Windows.Forms.NumericUpDown popupFreqNUD;
         private System.Windows.Forms.CheckBox tradingHoursCheckbox;
         private System.Windows.Forms.NumericUpDown popupDurNUD;
+        private System.Windows.Forms.TextBox apiCloudKey;
+        private System.Windows.Forms.Label label6;
     }
 }
 

@@ -171,6 +171,12 @@ namespace StockMarketPopupTickerApplication
             }
         }
 
+        private void ApiCloudKey_TextChanged(object sender, EventArgs e)
+        {
+            settings.iexCloudApiKey = this.apiCloudKey.Text;
+            SaveSettingsToFile();
+        }
+
         #endregion
 
         private List<StockListObjectData> GetStockPrices(ConfigSettingsObject settings)
@@ -182,7 +188,7 @@ namespace StockMarketPopupTickerApplication
             {
                 try
                 {
-                    StockListObjectData newData = IEXHelper.GetStockData(stock);
+                    StockListObjectData newData = IEXHelper.GetStockData(stock, settings.iexCloudApiKey);
                     if (settings.onlyPopupDuringTradingHours == true)
                     {
                         if (newData.StockStockMarketOpen == true)
@@ -228,6 +234,7 @@ namespace StockMarketPopupTickerApplication
                 settings.onlyPopupDuringTradingHours = false;
                 settings.popupDurationSeconds = 5;
                 settings.popupFrequencySeconds = 60;
+                settings.iexCloudApiKey = "YOUR KEY HERE";
                 settings.watchedStock = new List<string>() { "AAPL","TWTR","K","T" };
                 SaveSettingsToFile();
             }
@@ -241,6 +248,7 @@ namespace StockMarketPopupTickerApplication
             this.popupFreqNUD.Value = settings.popupFrequencySeconds;
             this.tradingHoursCheckbox.Checked = settings.onlyPopupDuringTradingHours;
             this.addStockTextbox.Text = "";
+            this.apiCloudKey.Text = settings.iexCloudApiKey;
             DrawListBasedOnStock();
         }
 
@@ -324,5 +332,6 @@ namespace StockMarketPopupTickerApplication
             this.watchedStockList.Items.Clear();
             this.watchedStockList.Items.AddRange(settings.watchedStock.ToArray());
         }
+
     }
 }
