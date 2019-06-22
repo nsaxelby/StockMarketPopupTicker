@@ -12,20 +12,20 @@ namespace StockMarketPopupTickerApplication
 {
     public static class IEXHelper
     {
-        private const string IEXURL = "https://api.iextrading.com/1.0/";
+        private const string IEXURL = "https://cloud.iexapis.com/stable/";
         /// <summary>
         /// returns a percentage ( as Decimal ) for a stock ticker
         /// </summary>
         /// <param name="symbol"></param>
         /// <returns>StockListObject</returns>
-        public static StockListObjectData GetStockData(string symbol)
+        public static StockListObjectData GetStockData(string symbol, string apiKey)
         {
             StockListObjectData toReturn = new StockListObjectData();
             toReturn.PercentageChange = -1;
             toReturn.StockName = symbol;
             toReturn.StockStockMarketOpen = false;
             // Build query to call against API:
-            string paramaters = $"stock/{symbol}/quote?displayPercent=true";
+            string paramaters = $"stock/{symbol}/quote?token={apiKey}&displayPercent=true";
             string objectAsString = APICall(paramaters);
 
             var data = (JObject)JsonConvert.DeserializeObject(objectAsString);

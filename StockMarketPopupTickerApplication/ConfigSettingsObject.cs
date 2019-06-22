@@ -12,5 +12,6 @@ namespace StockMarketPopupTickerApplication
         public int popupFrequencySeconds { get; set; }
         public int popupDurationSeconds { get; set; }
         public bool onlyPopupDuringTradingHours { get; set; }
+        public string iexCloudApiKey { get; set; }
     }
 }

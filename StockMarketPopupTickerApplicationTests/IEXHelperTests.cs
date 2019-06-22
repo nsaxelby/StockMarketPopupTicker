@@ -14,7 +14,7 @@ namespace StockMarketPopupTickerApplication.Tests
         [TestMethod()]
         public void GetPercentageForStockTestValidSymbol()
         {
-            decimal percentage = IEXHelper.GetStockData("AAPL").PercentageChange;
+            decimal percentage = IEXHelper.GetStockData("AAPL", "YOUR KEY HERE").PercentageChange;
             Assert.IsNotNull(percentage);
         }
 
@@ -22,7 +22,7 @@ namespace StockMarketPopupTickerApplication.Tests
         [ExpectedException(typeof(Exception))]
         public void GetPercentageForStockTestInvalidSymbol()
         {
-            IEXHelper.GetStockData("EXXAMPLE");
+            IEXHelper.GetStockData("EXXAMPLE", "YOUR KEY HERE");
         }
     }
 }
