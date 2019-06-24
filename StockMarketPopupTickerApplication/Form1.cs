@@ -42,7 +42,7 @@ namespace StockMarketPopupTickerApplication
         #region Basic UI Events
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(closeFromNotifcationTray == true)
+            if(closeFromNotifcationTray == true || e.CloseReason == CloseReason.WindowsShutDown || e.CloseReason == CloseReason.TaskManagerClosing)
             {
                 // Allow the close to happen, 
             }
