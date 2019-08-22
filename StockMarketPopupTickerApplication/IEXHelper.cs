@@ -21,7 +21,7 @@ namespace StockMarketPopupTickerApplication
         public static StockListObjectData GetStockData(string symbol, string apiKey)
         {
             StockListObjectData toReturn = new StockListObjectData();
-            toReturn.PercentageChange = -1;
+            toReturn.PercentageChange = 0;
             toReturn.StockName = symbol;
             toReturn.StockStockMarketOpen = false;
             // Build query to call against API:
@@ -29,8 +29,18 @@ namespace StockMarketPopupTickerApplication
             string objectAsString = APICall(paramaters);
 
             var data = (JObject)JsonConvert.DeserializeObject(objectAsString);
-            toReturn.PercentageChange = data["changePercent"].Value<Decimal>();
-            string closedValueString = data["latestSource"].Value<String>();
+            if (data["changePercent"] != null && data["changePercent"].Type != JTokenType.Null)
+            {
+                toReturn.PercentageChange = data["changePercent"].Value<Decimal>();
+            }
+
+            // Close by default.
+            string closedValueString = "close";
+            if(data["latestSource"] != null && data["latestSource"].Type == JTokenType.Null)
+            {
+                closedValueString = data["latestSource"].Value<String>();
+            }
+
             if (closedValueString.ToLower().Contains("close"))
             {
                 toReturn.StockStockMarketOpen = false;
