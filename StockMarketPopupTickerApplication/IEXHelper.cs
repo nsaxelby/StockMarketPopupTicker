@@ -36,7 +36,7 @@ namespace StockMarketPopupTickerApplication
 
             // Close by default.
             string closedValueString = "close";
-            if(data["latestSource"] != null && data["latestSource"].Type == JTokenType.Null)
+            if(data["latestSource"] != null && data["latestSource"].Type != JTokenType.Null)
             {
                 closedValueString = data["latestSource"].Value<String>();
             }
