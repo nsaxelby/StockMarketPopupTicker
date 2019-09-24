@@ -60,6 +60,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FullScreenHelper.cs" />
     <Compile Include="IEXHelper.cs" />
     <Compile Include="PopupForm.cs">
       <SubType>Form</SubType>
