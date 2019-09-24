@@ -36,7 +36,11 @@ namespace StockMarketPopupTickerApplication
 
         private void PopupTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            ShowStockPrices();
+            // Issue 5, only show if not in full screen mode
+            if (FullScreenHelper.IsForegroundFullScreen() == false)
+            {
+                ShowStockPrices();
+            }
         }
 
         #region Basic UI Events
